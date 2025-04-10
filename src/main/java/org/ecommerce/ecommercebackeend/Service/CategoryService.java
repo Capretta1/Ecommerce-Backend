@@ -30,20 +30,24 @@ public class CategoryService implements iCategoryService {
 
 
     @Override
-    public List<CategoryDTO> getAllCategories(Integer pageNumber, Integer pageSize) {
+    public List<Category> getAllCategories(Integer pageNumber, Integer pageSize) {
         Pageable pageDetails = PageRequest.of(pageNumber, pageSize);
         Page<Category> categoryPage = categoryRepository.findAll(pageDetails);
         List<Category> categories = categoryPage.getContent();
         if (categories.isEmpty()){
             throw new RuntimeException("No category added till now");
         }
-        return categories.stream().map(categoryMapper::mappedTO).toList();
+        return categories;
     }
 
 
     @Override
     public Category createCategory(CategoryDTO categoryDTO) {
+        if (categoryRepository.existsByCategoryName(categoryDTO.getCategoryName())) {
+            throw new RuntimeException("Category name already exists");
+        }
         Category category = categoryMapper.mappedFrom(categoryDTO);
+
         categoryRepository.save(category);
         return categoryRepository.save(category);
     }
@@ -57,11 +61,11 @@ public class CategoryService implements iCategoryService {
     }
 
     @Override
-    public void updateCategory(CategoryDTO categoryDTO, Long categoryID) {
+    public void updateCategory(Category category, Long categoryID) {
        Category savedCategory = categoryRepository.findById(categoryID).
                orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
-        savedCategory.setCategoryName(categoryDTO.getCategoryName());
+        savedCategory.setCategoryName(category.getCategoryName());
         categoryRepository.save(savedCategory);
-        categoryMapper.mappedFrom(categoryDTO);
+        categoryMapper.mappedTO(category);
     }
 }
