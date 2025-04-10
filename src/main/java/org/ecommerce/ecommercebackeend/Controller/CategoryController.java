@@ -29,7 +29,7 @@ public class CategoryController {
 
 
     @PostMapping("/api/admin/createCategory")
-    public String createCategory(@RequestBody CategoryDTO categoryDTO){
+    public String createCategory(@RequestBody Category categoryDTO){
         categoryService.createCategory(categoryDTO);
         return "Category added successfully";
     }

@@ -33,7 +33,7 @@ public class CategoryService implements iCategoryService {
     }
 
     @Override
-    public Category createCategory(CategoryDTO categoryDTO) {
+    public Category createCategory(Category categoryDTO) {
         Category category = categoryMapper.mappedFrom(categoryDTO);
         categoryRepository.save(category);
         return categoryRepository.save(category);
