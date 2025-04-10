@@ -23,15 +23,19 @@ public class CategoryController {
     }
 
     @GetMapping("/api/public/getCategories")
-    public List<Category> getAllCategory(){
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategory(
+            @RequestParam(name = "pageNumber")Integer pageNumber,
+            @RequestParam(name = "pageSize") Integer pageSize)
+    {
+        List<CategoryDTO> category = categoryService.getAllCategories(pageNumber, pageSize);
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
 
     @PostMapping("/api/admin/createCategory")
-    public String createCategory(@RequestBody Category categoryDTO){
-        categoryService.createCategory(categoryDTO);
-        return "Category added successfully";
+    public ResponseEntity<?> createCategory(@RequestBody CategoryDTO categoryDTO){
+        Category newCategory = categoryService.createCategory(categoryDTO);
+        return new ResponseEntity<>(newCategory, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/admin/deleteCategory/{categoryID}")
@@ -45,7 +49,7 @@ public class CategoryController {
     }
 
     @PutMapping("/api/admin/updateCategory/{categoryID}")
-    public ResponseEntity<String> updateCategory(@RequestBody CategoryDTO categoryDTO, @PathVariable Long categoryID){
+    public ResponseEntity<?> updateCategory(@RequestBody CategoryDTO categoryDTO, @PathVariable Long categoryID){
         try {
             categoryService.updateCategory(categoryDTO, categoryID);
             return new ResponseEntity<>("updated", HttpStatus.OK);

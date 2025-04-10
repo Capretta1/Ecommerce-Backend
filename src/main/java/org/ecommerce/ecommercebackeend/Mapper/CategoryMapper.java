@@ -10,19 +10,17 @@ public class CategoryMapper {
 
 
 
-    public static CategoryDTO mappedTO(CategoryDTO category){
+    public CategoryDTO mappedTO(Category category){
         CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setCategoryID(category.getCategoryID());
         categoryDTO.setCategoryName(category.getCategoryName());
 
         return categoryDTO;
     }
 
 
-    public Category mappedFrom(Category categoryDTO){
-        Category category = new Category();
-        category.setCategoryID(categoryDTO.getCategoryID());
-        category.setCategoryName(categoryDTO.getCategoryName());
-        return category;
+    public Category mappedFrom(CategoryDTO categoryDTO){
+        Category category1 = new Category();
+        category1.setCategoryName(categoryDTO.getCategoryName());
+        return category1;
     }
 }
