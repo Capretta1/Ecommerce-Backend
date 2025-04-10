@@ -1,6 +1,7 @@
 package org.ecommerce.ecommercebackeend.Controller;
 
 
+import org.ecommerce.ecommercebackeend.Config.AppConstants;
 import org.ecommerce.ecommercebackeend.DTO.CategoryDTO;
 import org.ecommerce.ecommercebackeend.Model.Category;
 import org.ecommerce.ecommercebackeend.Service.CategoryService;
@@ -24,8 +25,8 @@ public class CategoryController {
 
     @GetMapping("/api/public/getCategories")
     public ResponseEntity<List<CategoryDTO>> getAllCategory(
-            @RequestParam(name = "pageNumber")Integer pageNumber,
-            @RequestParam(name = "pageSize") Integer pageSize)
+            @RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false)Integer pageNumber ,
+            @RequestParam(name = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize)
     {
         List<CategoryDTO> category = categoryService.getAllCategories(pageNumber, pageSize);
         return new ResponseEntity<>(category, HttpStatus.OK);

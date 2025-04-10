@@ -57,11 +57,11 @@ public class CategoryService implements iCategoryService {
     }
 
     @Override
-    public Category updateCategory(CategoryDTO categoryDTO, Long categoryID) {
+    public void updateCategory(CategoryDTO categoryDTO, Long categoryID) {
        Category savedCategory = categoryRepository.findById(categoryID).
                orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
         savedCategory.setCategoryName(categoryDTO.getCategoryName());
-        savedCategory = categoryRepository.save(savedCategory);
-        return categoryMapper.mappedFrom(categoryDTO);
+        categoryRepository.save(savedCategory);
+        categoryMapper.mappedFrom(categoryDTO);
     }
 }
