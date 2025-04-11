@@ -10,5 +10,5 @@ public interface iCategoryService {
     List<Category> getAllCategories(Integer pageNumber, Integer pageSize);
     Category createCategory(CategoryDTO categoryDTO);
     String deleteCategory(Long categoryID);
-    void updateCategory(Category category, Long categoryID);
+    Category updateCategory(CategoryDTO categoryDTO, Long categoryID);
 }

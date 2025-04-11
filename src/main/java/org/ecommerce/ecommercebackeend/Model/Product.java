@@ -24,14 +24,16 @@ public class Product {
     @Size(min = 5)
     private String productName;
 
+    private String imageURL;
+
     @NotEmpty(message = "Description cannot be Empty")
     @Size(min = 20)
     private String description;
 
-    @NotEmpty(message = "Enter the amount of quantities")
-    private int quantity;
 
+    private int quantity;
     private double price;
+    private double discount;
     private double specialPrice;
 
     @ManyToOne
