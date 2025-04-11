@@ -10,11 +10,10 @@ public class CategoryMapper {
 
 
 
-    public CategoryDTO mappedTO(Category category){
+    public void mappedTO(Category category){
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryName(category.getCategoryName());
 
-        return categoryDTO;
     }
 
 

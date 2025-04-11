@@ -1,4 +1,5 @@
 package org.ecommerce.ecommercebackeend.iservice;
 
-public class iProductService {
+
+public interface iProductService {
 }
