@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "User")
+@Entity(name = "Role")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,8 +13,8 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_ID")
-    private long userID;
+    @Column(name = "role_ID")
+    private long roleID;
 
     @Column(length = 20, name = "role")
     @Enumerated(EnumType.STRING)

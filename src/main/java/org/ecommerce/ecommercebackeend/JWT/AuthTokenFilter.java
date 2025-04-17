@@ -1,6 +1,4 @@
 package org.ecommerce.ecommercebackeend.JWT;
 
-
-
-public class JwtUtils {
+public class AuthTokenFilter {
 }
