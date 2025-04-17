@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,11 +29,11 @@ public class User {
     @Column(name = "user_ID")
     private long userID;
 
-    @NotBlank
-    @Size(min = 2, max = 50)
+    @NotBlank //ADDING A VALIDATION FOR FIELD NOT TO BE BLANK
+    @Size(min = 2, max = 50)//VALIDATION FOR USERNAME CHARACTER SIZE
     private String userName;
 
-    @Email
+    @Email//VALIDATION FOR EMAIL
     @NotBlank
     @Size(max = 50)
     private String email;
@@ -46,4 +47,13 @@ public class User {
                 joinColumns = @JoinColumn(name = "user_ID"),
                 inverseJoinColumns = @JoinColumn(name = "role_ID"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Products>products;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_address",
+                joinColumns = @JoinColumn(name = "user_ID"),
+                inverseJoinColumns = @JoinColumn(name = "addressID"))
+    private List<Address>address;
 }
