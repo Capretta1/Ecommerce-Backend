@@ -51,8 +51,8 @@ public class SecurityConfig {
                     return config;
                 }))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("*").authenticated()
-                        .requestMatchers("/auth/sign-in", "/change/password").permitAll()).
+                        .requestMatchers("/category/admin/delete/categories/{categoryId}" , "/category/admin/new/category", "/category/admin/update/category/{categoryId}").authenticated()
+                        .requestMatchers("/auth/sign-in", "/change/password", "/category/all/categories").permitAll()).
                 httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/category")
 public class CategoryController {
 
 
@@ -22,7 +22,7 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/public/categories")
+    @GetMapping("/all/categories")
     public ResponseEntity<List<CategoryDTO>> getAllCategories(
             @RequestParam(name = "pageNumber", defaultValue = CategoryPagination.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(name = "pageSize", defaultValue = CategoryPagination.PAGE_SIZE, required = false) Integer pageSize,
@@ -32,20 +32,20 @@ public class CategoryController {
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/public/categories")
+    @PostMapping("/admin/new/category")
     public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO){
         CategoryDTO savedCategoryDTO = categoryService.createCategory(categoryDTO);
         return new ResponseEntity<>(savedCategoryDTO, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/admin/categories/{categoryId}")
+    @DeleteMapping("/admin/delete/category/{categoryId}")
     public ResponseEntity<CategoryDTO> deleteCategory(@PathVariable Long categoryId){
         CategoryDTO deletedCategory = categoryService.deleteCategory(categoryId);
         return new ResponseEntity<>(deletedCategory, HttpStatus.OK);
     }
 
 
-    @PutMapping("/public/categories/{categoryId}")
+    @PutMapping("/admin/update/category/{categoryId}")
     public ResponseEntity<CategoryDTO> updateCategory(@Valid @RequestBody CategoryDTO categoryDTO,
                                                       @PathVariable Long categoryId){
         CategoryDTO savedCategoryDTO = categoryService.updateCategory(categoryDTO, categoryId);
