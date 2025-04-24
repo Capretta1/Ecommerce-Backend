@@ -3,7 +3,6 @@ package org.ecommerce.ecommercebackeend.Service;
 import org.ecommerce.ecommercebackeend.Config.UserDetailsImp;
 import org.ecommerce.ecommercebackeend.Model.User;
 import org.ecommerce.ecommercebackeend.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

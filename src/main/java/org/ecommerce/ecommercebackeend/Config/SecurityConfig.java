@@ -52,7 +52,7 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("*").authenticated()
-                        .requestMatchers("*").permitAll()).
+                        .requestMatchers("/auth/sign-in", "/change/password").permitAll()).
                 httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);

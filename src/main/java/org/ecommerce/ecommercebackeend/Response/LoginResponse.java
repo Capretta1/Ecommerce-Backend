@@ -12,10 +12,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginResponse {
+    private Long ID;
     private String jwtToken;
-
     private String username;
     private List<String> roles;
 
 
+    public LoginResponse(Long id, String username, List<String> roles, String jwtToken) {
+    }
 }
